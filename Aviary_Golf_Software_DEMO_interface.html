@@ -1,0 +1,148 @@
+<HTML>
+
+<HEAD>
+
+<STYLE>
+
+BODY { background:url() no-repeat scroll top left }
+
+
+</STYLE>
+
+<TITLE></TITLE>
+
+<script>
+
+function IsIE()
+
+{
+
+	var nav = navigator.appName;
+
+	return (nav.substring(0,9) == 'Microsoft');
+
+}
+
+function MaximizeWindow()
+
+{
+
+	window.moveTo(0, 0);
+
+	window.resizeTo(screen.availWidth, screen.availHeight);
+
+}
+
+function ResizeWindow(w, h)
+
+{
+
+	if (window.innerWidth)
+
+	{
+
+		window.innerWidth = w;
+
+		window.innerHeight = h;
+
+	}
+
+	else
+
+	{
+
+		//window.resizeTo(w, h); // this resizes window, but no way to find out the size of chrome(menu bar, etc)
+
+	}
+
+}
+
+function PlaySound(sound, bgsound)
+
+{
+
+	if (IsIE())
+
+	{
+
+		bgsound.src = sound.src;
+
+	}
+
+	else
+
+		sound.play;
+
+}
+
+function OpenMail(address)
+
+{
+
+	window.location = address;
+
+}
+
+function OpenLink(address)
+
+{
+
+	return window.open(address,null,'scrollbars=yes,status=yes,titlebar=yes,toolbar=yes,menubar=yes,location=yes,resizable=yes');
+
+}
+
+function OpenCustomLink(address, target, options)
+
+{
+
+	return window.open(address, target, options);
+
+}
+
+function OpenSwf(title, address, width, height, target, options)
+
+{
+
+	var str = '<TITLE>' + title + '</TITLE>\n';
+
+	str += '<HTML>\n<BODY>\n<center>\n<OBJECT CLASSID=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" ';
+
+	str += 'WIDTH=\"' + width + '\" HEIGHT=\"' + height + '\" ';
+
+	str += 'CODEBASE=\"http://active.macromedia.com/flash5/cabs/swflash.cab#version=5,0,0,0\" id=robodemo>\n';
+
+	str += '<PARAM NAME=movie VALUE=\"' + address + '\">\n';
+
+	str += '<PARAM NAME=play VALUE=true><PARAM NAME=loop VALUE=FALSE>\n<PARAM NAME=quality VALUE=high>\n';
+
+	str += '<EMBED NAME=robodemo SRC=\"' + address + '\" WIDTH=' + width + ' HEIGHT=' + height + ' loop=FALSE quality=high ';
+
+	str += 'TYPE=\"application/x-shockwave-flash\" PLUGINSPAGE=\"http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash\" swLiveConnect=true>\n';
+
+	str += '</EMBED>\n</OBJECT>\n</center>\n</BODY>\n</HTML>';
+
+
+
+	swfWindow = OpenCustomLink('', target, options);
+
+	swfWindow.document.write(str);
+
+}
+
+</script>
+
+</HEAD>
+
+<BODY background="" bgproperties="FIXED" bgcolor="#FFFFFF" onLoad="ResizeWindow(640, 480);" onUnload="">
+<p>&nbsp;</p>
+<!-- Albatross Golf Software Analyze -->
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-254105-1";
+urchinTracker();
+</script>
+<!-- end Albatross Golf Software Analyze -->
+</BODY>
+</HTML>
+

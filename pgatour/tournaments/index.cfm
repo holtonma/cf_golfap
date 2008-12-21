@@ -18,11 +18,17 @@
 			</cfoutput>
 		</select>
 	</div>
+	
 	<div id="tourney_results">
 	</div>
 </div>
 
+
 <script type="text/javascript">
+// connect change event to select box "tournaments"
+// load via ajax call... table from back end
+// tourney data  -- stuff into "div#tourney_results"
+
 
 
 </script>

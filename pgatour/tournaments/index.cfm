@@ -1,52 +1,66 @@
 <cfinclude template="header.cfm">
- <script type="text/javascript" src="../../prototype.js"></script>   
- <!--- <script type="text/javascript" src="combined.js"></script>  ---> 
- <script type="text/javascript" src="../../effects.js"></script> 
- <script type="text/javascript" src="../../builder.js"></script> 
- <script type="text/javascript" src="../../dragdrop.js"></script> 
- <script type="text/javascript" src="../../portal.js"></script>
- <script type="text/javascript" src="../../firebug.js"></script>
 
 <body id="bTour">      
   <!--- <h1>Golf News Daily</h1> --->
   <div id="googleads"></div>
 
-<div align="center">
-	PGATour Golf Results.   
-	<b><cfoutput>#DateFormat(Now(), "Long")#</cfoutput></b> : send feedback to <b>holtonma(at)gmail(dot)com</b>
-</div>
+	<!--- initial grab of all tourneys--->
+	<cfinclude template="m_qtournaments.cfm"> <!--- <cfdump var="#qtournaments#"> --->
 
-<!--- simple dropdown... produces tables based on Ajax request--->
-
-<cfquery datasource="golfap" name="qtournaments">
-	SELECT DISTINCT(en.name), e.id, e.year, e.dates, e.course
-	FROM
-	event_names en 
-	INNER JOIN events e ON en.id = e.name_id
-	INNER JOIN golfer_history gh ON gh.event_id = e.id
-</cfquery>
-
-<!--- <cfdump var="#qtournaments#"> --->
+	<div id="container" style="padding:8px;">
+		<span align="left">Select Tournament:</span>
+		<span align="left">
+			<select id="tournaments">
+				<cfoutput query="qtournaments">
+					<option value="#ID#">#Year# #Name#</option>
+				</cfoutput>
+			</select>
+		</span>
 	
-<div id="container">
-	<div align="center">Select Tournament:</div>
-	<div align="center">
-		<select id="tournaments">
-			<cfoutput query="qtournaments">
-				<option value="#ID#">#Year# #Name#</option>
-			</cfoutput>
-		</select>
+		<div id="tourney_results"></div>
 	</div>
-	
-	<div id="tourney_results">
-	</div>
-</div>
 
 
 <script type="text/javascript">
 // connect change event to select box "tournaments"
 // load via ajax call... table from back end
 // tourney data  -- stuff into "div#tourney_results"
+function grab_tourney(){
+	elem = $('tourney_results');    
+	var url = "ajax_getTourney.cfm";
+	var pars = "FORM.tourneyid=" + $('tournaments').value;
+	new Ajax.Updater('tourney_results', url, 
+	{
+	 method: 'Post',
+	 asynchronous: true,
+	 parameters: pars
+	});
+} //grab_tourney fn
+
+
+function init() {      
+	var elem = $('tourney_results');     
+	var url = "ajax_getTourney.cfm";
+	var pars = "FORM.tourneyid=" + $('tournaments').value;
+	new Ajax.Updater('tourney_results', url, 
+	{
+	 method: 'Post',
+	 asynchronous: true,
+	 parameters: pars,
+	 onFailure: function(){
+	   elem.show();
+	   //elem.setStyle({borderColor: '#EE0000'});
+	   elem.innerHTML = "Please click your browser's refresh button again, the tournaments did not load.";
+	   //init();
+	 }
+	});
+} // init fn
+
+
+Event.observe(window, "load", function(){
+	init();
+	Event.observe('tournaments', "change", grab_tourney);
+});
 </script>
  
  

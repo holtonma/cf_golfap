@@ -5,9 +5,9 @@
 
 <div id="nav" style="min-width:820px;padding-top:3px;">
 <ul>
-  <li id="t-news"><a href="index.cfm">PGA Tour Results</a></li>
+  <li id="t-news"><a href="index.cfm">Tournaments</a></li>
   <!--- <li id="t-reviews"><a href="oldnews.cfm">Old News</a></li> --->
-  <li id="t-leaderboards"><a href="players.cfm">Results By Player</a></li>
+  <li id="t-leaderboards"><a href="players.cfm">Players</a></li>
 </ul>
 <div id="byline" style="float:right;">Aggregating golf data for your pleasure</div>
 </div>

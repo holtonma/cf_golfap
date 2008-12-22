@@ -262,3 +262,33 @@ html {
 #lb_contain{
   padding:10px;
 }
+
+#tournament{
+	border:1px solid silver;
+	margin-top:10px;
+}
+
+#tournament th{ 
+	padding:5px; font-size:14px; font-weight:bold; font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif; 
+	text-transform:none; line-height:18px; background-color:transparent; border-width:1px;
+	color:#555555; border-top-color:#EEEEEE;border-right-color:#B3B3B3;#border-bottom-color:#666666;border-left-color:#666666;	
+	border-bottom:1px solid gray;
+}
+
+#tournament td{ 
+	padding-right:4px;padding-left:4px;
+	padding-top:2px;padding-bottom:1px; 
+	font-size:12px; font-family:"Lucida Grande",Tahoma,Verdana,Arial,sans-serif;
+	color:#382D24;
+}
+
+.odd{
+	background-color:transparent; 
+}
+.even{
+	background-color:#F7F5F3; 
+}
+
+
+
+

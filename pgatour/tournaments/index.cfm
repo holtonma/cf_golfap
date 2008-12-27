@@ -1,5 +1,7 @@
 <cfinclude template="header.cfm">
 
+<cfparam name="URL.ID" default="91"> <!--- change this code to TOP 1, order by start_date DESC--->
+	
 <body id="bTour">      
   <!--- <h1>Golf News Daily</h1> --->
   <div id="googleads"></div>
@@ -12,7 +14,7 @@
 		<span align="left">
 			<select id="tournaments">
 				<cfoutput query="qtournaments">
-					<option value="#ID#">#Year# #Name#</option>
+					<option value="#ID#" <cfif ID eq URL.ID>SELECTED</cfif>>#Year# #Name#</option>
 				</cfoutput>
 			</select>
 		</span>

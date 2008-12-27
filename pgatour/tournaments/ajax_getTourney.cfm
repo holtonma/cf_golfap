@@ -3,7 +3,7 @@
 
 <cfoutput>
 <cfquery datasource="golfap" name="qThisTourney">
-	SELECT e.name, g.fname, g.lname, gh.to_par, gh.thru, gh.r1, gh.r2, gh.r3, gh.r4, gh.total, gh.today, gh.pos
+	SELECT e.name, g.fname, g.lname, gh.to_par, gh.thru, gh.r1, gh.r2, gh.r3, gh.r4, gh.total, gh.today, gh.pos, gh.golfer_id as ID
 	FROM golfer_history gh 
 	INNER JOIN golfer g ON g.id = gh.golfer_id
 	INNER JOIN events e ON e.id = gh.event_id
@@ -28,7 +28,7 @@
 			
 		<tr style="border:1px solid silver;">
 			<td class="#tdclass#">#pos#</td>
-			<td class="#tdclass#">#lname#, #fname#</td>
+			<td class="#tdclass#"><a href="players.cfm?ID=#ID#">#lname#, #fname#</a></td>
 			<td class="#tdclass#" align="center">#today#</td>
 			<td class="#tdclass#" align="center">#thru#</td>
 			<td class="#tdclass#" align="center">#r1#</td>

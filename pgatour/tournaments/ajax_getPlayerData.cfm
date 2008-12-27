@@ -30,7 +30,7 @@ select e.name, e.id, g.fname, g.lname, e.dates, gh.to_par, gh.thru, gh.r1, gh.r2
 			
 		<tr style="border:1px solid silver;">
 			<td class="#tdclass#">#lname#, #fname#</td>
-			<td class="#tdclass#"><b>#name#</b></td>
+			<td class="#tdclass#"><b><a href="index.cfm?ID=#ID#">#name#</a></b></td>
 			<td><div style="font-size:9px;">#dates#</div></td>
 			<td class="#tdclass#" align="center">
 				<cfif madecut gte 0>

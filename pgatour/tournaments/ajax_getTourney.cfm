@@ -3,12 +3,12 @@
 
 <cfoutput>
 <cfquery datasource="golfap" name="qThisTourney">
-	SELECT e.name, g.fname, g.lname, gh.to_par, gh.thru, gh.r1, gh.r2, gh.r3, gh.r4, gh.total, gh.today, gh.pos, gh.golfer_id as ID
+	SELECT e.name, g.fname, g.lname, gh.to_par, gh.thru, gh.r1, gh.r2, gh.r3, gh.r4, gh.total, gh.today, gh.pos, gh.golfer_id as ID, gh.id
 	FROM golfer_history gh 
 	INNER JOIN golfer g ON g.id = gh.golfer_id
 	INNER JOIN events e ON e.id = gh.event_id
 	WHERE e.id = #tourney_id#
-	ORDER BY gh.madecut DESC, gh.total ASC, e.id DESC, gh.thru DESC 
+	ORDER BY gh.madecut DESC, gh.total ASC, gh.id ASC, e.id DESC, gh.thru DESC 
 </cfquery>
 </cfoutput>
 
